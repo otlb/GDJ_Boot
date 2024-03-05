@@ -2,6 +2,8 @@ package com.winter.app.db;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.Connection;
+
 import javax.sql.DataSource;
 
 import org.junit.jupiter.api.Test;
@@ -18,8 +20,8 @@ class DbTest {
 
 	@Test
 	void test()throws Exception {
-		//Connection con = dataSource.getConnection();
-		
+		Connection con = dataSource.getConnection();
+		assertNotNull(con);
 		
 	}
 
