@@ -15,7 +15,7 @@
 
     <title>SB Admin 2 - Dashboard</title>
 
-	<c:import url="./temp/css.jsp"></c:import>
+	<c:import url="../temp/css.jsp"></c:import>
 
 </head>
 
@@ -24,7 +24,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-		<c:import url="./temp/sidebar.jsp"></c:import>
+		<c:import url="../temp/sidebar.jsp"></c:import>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -35,7 +35,7 @@
 
 
 					
-					<c:import url="./temp/topbar.jsp"></c:import>
+					<c:import url="../temp/topbar.jsp"></c:import>
 
 
                 <!-- Begin Page Content -->
@@ -372,7 +372,7 @@
             </div>
             <!-- End of Main Content -->
 
-		<c:import url="./temp/footer.jsp"></c:import>
+		<c:import url="../temp/footer.jsp"></c:import>
 
         </div>
         <!-- End of Content Wrapper -->
@@ -407,7 +407,7 @@
 
 
 
-	<c:import url="./temp/script.jsp"></c:import>
+	<c:import url="../temp/script.jsp"></c:import>
 
 </body>
 
