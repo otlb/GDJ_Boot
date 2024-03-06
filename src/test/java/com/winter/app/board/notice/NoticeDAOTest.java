@@ -41,10 +41,9 @@ class NoticeDAOTest {
 	void getListTest()throws Exception{
 		Pager pager = new Pager();
 		pager.setPage(1L);
-		pager.MakeIendex();
-		
-		Long totalCount =  noticeDAO.getTotalCount(pager);
-		pager.makeNum(totalCount);
+		pager.makeIndex();
+		//totalCount =  noticeDAO.getTotalCount(pager);
+		//pager.makeNum(totalCount);
 		log.info("pager"+pager);
 		
 		List<BoardVO> ar =  noticeDAO.getList(pager);

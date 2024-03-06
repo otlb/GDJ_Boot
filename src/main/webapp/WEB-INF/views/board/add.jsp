@@ -53,7 +53,7 @@
 
 					<!-- Content Row 실제 페이지 내용-->
 					<div class="row">
-						<form action="/notice/add" method="post">
+						<form action="" method="post" enctype="multipart/form-data">
 							<div class="mb-3">
 								<label for="name" class="form-label">제목
 									</label> <input type="text" class="form-control"
@@ -65,9 +65,13 @@
 									id="user" name="boardUser">
 							</div>
 							<div class="mb-3">
-								<label for="contents" class="form-label">내용								
-									</label>
 									<textarea id="contents" name="boardContents"></textarea>
+								<label for="contents" class="form-label">내용</label>
+							</div>
+							<div class="mb-3">
+								<input type="file" name="attach">
+								<input type="file" name="attach">
+								<input type="file" name="attach">							
 							</div>									
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</form>

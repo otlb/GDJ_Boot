@@ -1,4 +1,4 @@
-package com.winter.app.board.notice;
+package com.winter.app.board.qna;
 
 import java.util.List;
 
@@ -18,13 +18,13 @@ import com.winter.app.util.Pager;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/notice/*")
+@RequestMapping("/qna/*")
 @Slf4j
-public class NoticeController {
+public class QnaController {
 	
 	@Autowired
-	private NoticeService noticeService;
-	@Value("${board.notice.name}")
+	private QnaService qnaService;
+	@Value("${board.qna.name}")
 	private String name;
 	
 	@ModelAttribute("board")
@@ -34,8 +34,8 @@ public class NoticeController {
 	
 	@GetMapping("list")
 	public String getList(Pager pager, Model model)throws Exception{
-		log.info("========= {}=======",name);
-		List<BoardVO> ar = noticeService.getList(pager);
+		
+		List<BoardVO> ar = qnaService.getList(pager);
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		return "board/list";
@@ -47,14 +47,14 @@ public class NoticeController {
 	}
 	
 	@PostMapping("add")
-	public String add(NoticeVO noticeVO, MultipartFile [] attach)throws Exception{
-		int result = noticeService.add(noticeVO, attach);
+	public String setadd(QnaVO qnaVO, MultipartFile [] attach)throws Exception{
+		int result = qnaService.setAdd(qnaVO, attach);
 		return "redirect:./list";
 	}
 	
 	@GetMapping("detail")
 	public String getDetail(BoardVO boardVO, Model model)throws Exception{
-		boardVO = noticeService.getDetail(boardVO);
+		boardVO = qnaService.getDetail(boardVO);
 		model.addAttribute("vo", boardVO);
 		return "board/detail";
 	}
