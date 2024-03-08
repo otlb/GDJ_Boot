@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +51,33 @@
 
                     <!-- Content Row -->
                     <div class="row">
-
+						<form:form modelAttribute="memberVO"  method="POST">
+							<!-- id -->
+							<form:input path="username"/>
+							<form:errors path="username"></form:errors>
+							
+							<!-- password -->
+							<form:password path="password"/>
+							<form:errors path="password"></form:errors>
+							
+							<!-- password check-->
+							<%-- <form:password path="password2"/> --%>
+							
+							<!-- phone -->
+							<form:input path="phone"/>
+							
+							<!-- email -->
+							<form:input path="email"/>
+							
+							<!-- 주소 -->
+							<form:input path="address"/>
+							
+							<!-- 이름 -->
+							<form:input path="name"/>
+							
+							<!-- 버튼 -->
+							<form:button>가입</form:button>
+						</form:form>
                     </div>
 
                 </div>
