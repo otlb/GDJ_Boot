@@ -20,7 +20,7 @@ public class MemberVO {
 	@Size(min=8, max=16) 
 	private String password;
 	private String passwordCheck;
-	@Pattern(regexp="") //패턴 정하기
+	//@Pattern(regexp="") //패턴 정하기
 	private String phone;
 	@Email
 	private String email;
