@@ -19,6 +19,12 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-aop</artifactId>
+				<!-- 버전 생략 -->
+		</dependency>
 
 		<!--log4jdbc-log4j2-jdbc4.1 -->
 		<!-- 버전은 최신 버전으로 배포할때는 삭제-->
