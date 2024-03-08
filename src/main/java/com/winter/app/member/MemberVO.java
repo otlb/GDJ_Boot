@@ -19,6 +19,7 @@ public class MemberVO {
 	@NotBlank //비어있으면 안된다 
 	@Size(min=8, max=16) 
 	private String password;
+	private String passwordCheck;
 	@Pattern(regexp="") //패턴 정하기
 	private String phone;
 	@Email
