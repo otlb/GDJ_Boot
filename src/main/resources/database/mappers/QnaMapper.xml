@@ -27,15 +27,23 @@
  		<include refid="search"></include> 		
  	</select> 	
  	
-   	<insert id="setAdd" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="boardNum">
+   	<insert id="add" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="boardNum">
+   	  	<selectKey keyProperty="boardNum">
+  			SELECT seq.nextval FROM DUAL
+  		</selectKey>
   		INSERT INTO QnA 
   		(BOARDUSER, BOARDNAME, BOARDCONTENTS, BOARDDATE, BOARDHITS,BOARDREF,BOARDSTEP,BOARDDEPTH)
   		VALUES
-  		(#{boardUser}, #{boardName}, #{boardContents}, now(), 0,#{boardRef},0,0)
+  		(#{boardUser}, #{boardName}, #{boardContents}, now(), 0,0,0,0)
   	</insert>
+  	
+  	<update id="refUpdate" parameterType="BoardVO">
+  		UPDATE QNA SET BOARDREF=#{boardNum} WHERE BOARDNUM=#{boardNum}
+  	</update>
 
  	
  	<insert id="addFile" parameterType="FileVO">
+ 		
   		INSERT INTO QNAFILES
   		VALUES (null, #{boardNum}, #{fileName}, #{oriName})
   	</insert>

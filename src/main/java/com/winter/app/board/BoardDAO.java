@@ -18,6 +18,8 @@ public interface BoardDAO {
 	
 	public int addFile(FileVO fileVO)throws Exception;
 	
-	public BoardVO getDetail(BoardVO boardVO)throws Exception;	
+	public BoardVO getDetail(BoardVO boardVO)throws Exception;
+	
+	public FileVO getFileDetail(FileVO fileVO)throws Exception;
 	
 }

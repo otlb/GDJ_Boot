@@ -37,7 +37,7 @@ public class QnaService implements BoardService {
 
 	
 	public int setAdd(QnaVO qnaVO, MultipartFile [] attach) throws Exception {
-		int result = qnaDAO.setAdd(qnaVO);
+		int result = qnaDAO.add(qnaVO);
 		
 		for(MultipartFile multipartFile:attach) {
 			if(multipartFile.isEmpty()) {
@@ -61,14 +61,37 @@ public class QnaService implements BoardService {
 		// TODO Auto-generated method stub 
 		return qnaDAO.getDetail(boardVO);
 	}
+	
+	@Override
+	public FileVO getFileDetail(FileVO fileVO) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 
 	@Override
-	public int add(BoardVO boardVO, MultipartFile[] attach) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int add(BoardVO boardVO, MultipartFile [] attach) throws Exception {
+		int result = qnaDAO.add(boardVO);
+		//ref를 업데이트
+		result = qnaDAO.refUpdate(boardVO);
+		
+		for(MultipartFile multipartFile:attach) {
+			if(multipartFile.isEmpty()) {
+				continue;
+			}
+			
+			String fileName = fileManager.fileSave(uploadPath, multipartFile);
+			FileVO fileVO = new FileVO();
+			fileVO.setBoardNum(boardVO.getBoardNum());
+			fileVO.setFileName(fileName);
+			fileVO.setOriName(multipartFile.getOriginalFilename());
+			
+			result = qnaDAO.addFile(fileVO);
+		}
+		
+		return result;
 	}
-	
 	
 
 }
