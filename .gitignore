@@ -1,5 +1,6 @@
 ### Custom ###
 application-dev.properties
+application-pod.properties
 
 HELP.md
 target/
