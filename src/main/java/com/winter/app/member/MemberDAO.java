@@ -9,5 +9,6 @@ public interface MemberDAO {
 	
 	public int add(MemberVO memberVO)throws Exception;	
 	
+	public int update(MemberVO memberVO)throws Exception;
 
 }

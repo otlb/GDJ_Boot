@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-@Transactional(rollbackFor = Exception.class)
+//@Transactional(rollbackFor = Exception.class)
 public class NoticeService implements BoardService {
 	
 	@Autowired
@@ -41,6 +41,7 @@ public class NoticeService implements BoardService {
 	public int add(BoardVO boardVO, MultipartFile [] attach) throws Exception {
 		int result = noticeDAO.add(boardVO);
 		
+				
 		for(MultipartFile multipartFile:attach) {
 			if(multipartFile.isEmpty()) {
 				continue;

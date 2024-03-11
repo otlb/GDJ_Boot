@@ -1,5 +1,10 @@
 package com.winter.app.member;
 
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.winter.app.member.group.MemberJoinGroup;
 import com.winter.app.member.group.MemberUpdateGroup;
 
@@ -14,7 +19,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class MemberVO {
+public class MemberVO implements UserDetails {
 	
 	@NotBlank(message = "입력해주세요",groups = {MemberJoinGroup.class, MemberUpdateGroup.class})
 	private String username;
@@ -32,5 +37,61 @@ public class MemberVO {
 	private String address;
 	
 	private String name;
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override //잠겨있나?
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override //비번이 유효기간
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override //사용가능한 계정인가?
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
+	}
+
+	@Override
+	protected void finalize() throws Throwable {
+		// TODO Auto-generated method stub
+		super.finalize();
+	}
+	
+	
 
 }
