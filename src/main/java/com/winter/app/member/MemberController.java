@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.winter.app.member.group.MemberJoinGroup;
 import com.winter.app.member.group.MemberUpdateGroup;
@@ -57,16 +59,25 @@ public class MemberController {
 		  //MemberVO memberVO2 = (MemberVO)context.getAuthentication().getPrincipal();
 		  
 		  
-	}
-	
-	
-	
+	}	
 	
 	@GetMapping("login")
-	public String login(@ModelAttribute MemberVO memberVO)throws Exception{
+	public String login(@ModelAttribute MemberVO memberVO,HttpSession session)throws Exception{
 		
-		return "member/login";
+		Object obj = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		
+		if(obj == null) {
+			return "member/login";
+		}
+		SecurityContextImpl contextImpl = (SecurityContextImpl)obj;
+		String user = contextImpl.getAuthentication().getPrincipal().toString();
+		if(user.equals("Authentication")) {
+			return "member/login";
+		}
+		
+		return "redirect:/";
 	}
+	
 	
 	@GetMapping("update")
 	public void update(Model model)throws Exception{

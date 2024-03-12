@@ -1,5 +1,6 @@
 package com.winter.app.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +15,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfing {
+	@Autowired
+	private SecurityLoginSucessHandler handler;
+	@Autowired
+	private SecurityLoginFailHandler failHandler;
+	
 	@Bean
 	WebSecurityCustomizer webSecurityCustomizer() {
 		return web -> web
@@ -52,7 +58,10 @@ public class SecurityConfing {
 									(login)->
 										login
 											.loginPage("/member/login")
-											.defaultSuccessUrl("/")//로그인이 성공하면 어디로 보낼것인가
+											//.failureUrl("")//로그인 실패했을때
+											.failureHandler(failHandler)//로그인이 실패했을때 특정행동을 하고싶을때 
+											//.defaultSuccessUrl("/")//로그인이 성공하면 어디로 보낼것인가 ,로그인후 특정행동이 없으면 사용 
+											.successHandler(handler) //defaultSuccessUrl이랑 같이 사용할수없음,로그인후 특정행동이 필요하면 사용 
 											//.passwordParameter("pw") security에서 기본으로 파라미터 이름을 password 저장하는데 파라미터 이름을 바꾸고싶으면 사용
 											//.usernameParameter("id") password와 동일 
 											.permitAll()							

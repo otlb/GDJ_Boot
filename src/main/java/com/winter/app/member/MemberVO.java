@@ -40,7 +40,12 @@ public class MemberVO implements UserDetails {
 	private String name;
 	
 	private List<RoleVO> roleVOs;
-
+	
+	private boolean accountNonExpired; // 계정의 만료 여부 true 만료 안됨, false 만료됨, 로그인 안됨 
+	private boolean accountNonLocked; // 계정 잠김 여부, true: 계정 잠기지 않음, false: 계정 잠김, 로그인 안됨
+	private boolean credentialsNonExpired; // 비밀번호 만료 여부, true: 만료 안됨, false: 만료 됨, 로그인 안됨
+	private boolean enabled; // 계정 사용 여부, true: 계정 활성화(계정 사용 가능), false: 계정 비활성화 (계정 사용 불가, 로그인 안됨)
+	
 	@Override //권한(Authority)을 검사할때 
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new ArrayList<>();
@@ -53,29 +58,7 @@ public class MemberVO implements UserDetails {
 		return authorities;
 	}
 	
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override //잠겨있나?
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override //비번이 유효기간
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override //사용가능한 계정인가?
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
-	}
+	
 
 	@Override
 	public int hashCode() {

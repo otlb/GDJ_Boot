@@ -27,6 +27,10 @@
 		<result column="EMAIL" property="email"/>
 		<result column="ADDRESS" property="address"/>
 		<result column="NAME" property="name"/>
+		<result column="ACCOUNTNONEXPIRED" property="accountNonExpired"/>
+		<result column="ACCOUNTNONLOCKED" property="accountNonLocked"/>
+		<result column="CREDENTIALSNONEXPIRED" property="credentialsNonExpired"/>
+		<result column="ENABLED" property="enabled"/>
 		<collection property="roleVOs" javaType="List" ofType="RoleVO">
 			<result column="ROLENAME" property="roleName"/>
 		</collection>		

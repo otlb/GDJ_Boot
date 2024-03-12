@@ -68,6 +68,11 @@
 						                                <div class="p-5">
 						                                    <div class="text-center">
 						                                        <h1 class="h4 text-gray-900 mb-4">Member Login!</h1>
+						                                        
+						                                        <div>
+						                                        	 <h3>${param.message}</h3> <!-- 파라미터를 출력하고싶으면 param -->
+						                                        	
+						                                        </div>
 						                                    </div>
 						                                    <form:form cssClass="user" modelAttribute="memberVO">
 						                                        <div class="form-group">
@@ -133,6 +138,11 @@
  
 
 	<c:import url="../temp/script.jsp"></c:import>
+	
+	<!-- 파라미터 없애기 -->
+	<script type="text/javascript">
+	history.replaceState({}, null, location.pathname);
+	</script>
 
 </body>
 
