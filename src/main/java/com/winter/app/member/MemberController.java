@@ -1,6 +1,11 @@
 package com.winter.app.member;
 
+import java.util.Enumeration;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +29,38 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@GetMapping("page")
+	public void page(HttpSession session)throws Exception{
+		
+		  //속성명 확인
+		  Enumeration<String> en = session.getAttributeNames();
+		  
+		  while(en.hasMoreElements()) {
+			  log.info("===={}====",en.nextElement());
+		  }
+		  //확인한 속성명으로 오브젝트타입에 넣고 안에 어떤 데이터가 들어있는지 확인 
+		  Object obj = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		  log.info("========{}=========",obj);
+		  
+		  //확인된 데이터에 맞는 데이터타입으로 변수에 넣고 원하는 데이터 출력 
+		  SecurityContextImpl contextImpl = (SecurityContextImpl)obj;
+		  String name =  contextImpl.getAuthentication().getName();
+		  MemberVO memberVO = (MemberVO)contextImpl.getAuthentication().getPrincipal();
+		  
+		  log.info("====Name{}====",name);
+		  log.info("====membervo{}====",memberVO);
+		  
+		  
+		  //2번째 방법 
+		  //SecurityContext context = SecurityContextHolder.getContext();
+		  //MemberVO memberVO2 = (MemberVO)context.getAuthentication().getPrincipal();
+		  
+		  
+	}
+	
+	
+	
 	
 	@GetMapping("login")
 	public String login(@ModelAttribute MemberVO memberVO)throws Exception{

@@ -1,8 +1,11 @@
 package com.winter.app.member;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.winter.app.member.group.MemberJoinGroup;
@@ -32,16 +35,22 @@ public class MemberVO implements UserDetails {
 	//@Pattern(regexp="") //패턴 정하기
 	private String phone;
 	@Email(groups = {MemberJoinGroup.class, MemberUpdateGroup.class})
-	private String email;
-	
-	private String address;
-	
+	private String email;	
+	private String address;	
 	private String name;
+	
+	private List<RoleVO> roleVOs;
 
-	@Override
+	@Override //권한(Authority)을 검사할때 
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		
+		for(RoleVO roleVO:roleVOs) {
+			GrantedAuthority g = new SimpleGrantedAuthority(roleVO.getRoleName());
+			authorities.add(g);
+		}		
+		
+		return authorities;
 	}
 	
 	@Override

@@ -37,6 +37,7 @@ public class SecurityConfing {
 								authorizeHttpRequests
 								.requestMatchers("/").permitAll() //누구나 접근가능
 								.requestMatchers("/member/add").permitAll()
+								.requestMatchers("/member/page", "/member/logout").authenticated()
 								.requestMatchers("notice/list").authenticated()
 								.requestMatchers("/notice/add", "/notice/delete").hasRole("ADMIN")// admin만 접근가능,경로도 2개 사용가능
 								.requestMatchers("/notice/update").hasAnyRole("ADMIN, MABAGER")// 2개중 한개에 속하면 접근가능,또는 

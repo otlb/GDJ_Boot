@@ -1,21 +1,27 @@
 package com.winter.app.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+@Transactional(rollbackFor = Exception.class)
 public class MemberService implements UserDetailsService {
 	
 	@Autowired
 	private MemberDAO memberDAO;
 	
+	@Autowired	
+	private PasswordEncoder passwordEncoder;
 	
 	
 	
@@ -36,8 +42,13 @@ public class MemberService implements UserDetailsService {
 
 
 	public int add(MemberVO memberVO)throws Exception{
-			
-		return memberDAO.add(memberVO);
+		//비밀번호 암호화
+		memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));	
+		int result =  memberDAO.add(memberVO);
+		
+		//회원의 role정보 저장
+		result = memberDAO.addMemberRole(memberVO);
+		return result;
 	}
 	
 	
