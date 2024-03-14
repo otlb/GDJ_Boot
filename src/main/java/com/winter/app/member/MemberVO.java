@@ -3,10 +3,12 @@ package com.winter.app.member;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import com.winter.app.member.group.MemberJoinGroup;
 import com.winter.app.member.group.MemberUpdateGroup;
@@ -22,7 +24,20 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class MemberVO implements UserDetails {
+public class MemberVO implements UserDetails, OAuth2User {
+	
+	//Naver, kakao, google
+		private String social;
+
+		private Map<String, Object> attributes;
+
+
+		@Override
+		public Map<String, Object> getAttributes() {
+			// TODO Auto-generated method stub
+			return this.attributes;
+		}
+	
 	
 	@NotBlank(message = "입력해주세요",groups = {MemberJoinGroup.class, MemberUpdateGroup.class})
 	private String username;

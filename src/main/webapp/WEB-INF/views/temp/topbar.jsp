@@ -60,6 +60,11 @@
 			<li class="nav-item mx-1"><a href="/member/login" class="nav-link">
 					<i class="fas fa-sign-in-alt"></i>
 			</a></li>
+			                        <li class="nav-item mx-1">
+							<a class="nav-link" href="/oauth2/authorization/kakao">
+								KakaoLogin
+							</a>
+						</li>
 		</sec:authorize>
 
 
