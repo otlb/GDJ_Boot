@@ -70,9 +70,9 @@
 						                                        <h1 class="h4 text-gray-900 mb-4">Member Login!</h1>
 						                                        
 						                                        <div>
-						                                        	 <h3>${param.message}</h3> <!-- 파라미터를 출력하고싶으면 param -->
-						                                        	
+						                                        	<h3>${param.message}</h3>
 						                                        </div>
+						                                        
 						                                    </div>
 						                                    <form:form cssClass="user" modelAttribute="memberVO">
 						                                        <div class="form-group">
@@ -81,7 +81,7 @@
 						                                             <form:errors path="username"></form:errors>   
 						                                        </div>
 						                                        <div class="form-group">
-						                                            <form:password path="password" value="123456" cssClass="form-control form-control-user"
+						                                            <form:password path="password" value="123456789" cssClass="form-control form-control-user"
 						                                                id="password" ></form:password>
 						                                            <form:errors path="password"></form:errors>    
 																	
@@ -98,7 +98,7 @@
 																	<label class="form-check-label" for="remember-me">ID 기억하기</label>
 																</div>
 						                                        
-																<button class="btn btn-primary btn-user btn-block">Login</button>
+																<button class="btn btn-primary btn-user btn-block">Join</button>
 
 						                           
 						                                        <hr>
@@ -146,13 +146,12 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
- 
+    
 
 	<c:import url="../temp/script.jsp"></c:import>
 	
-	<!-- 파라미터 없애기 -->
 	<script type="text/javascript">
-	history.replaceState({}, null, location.pathname);
+		history.replaceState({}, null, location.pathname);
 	</script>
 
 </body>

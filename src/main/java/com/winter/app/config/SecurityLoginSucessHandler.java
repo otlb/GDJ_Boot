@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class SecurityLoginSucessHandler implements AuthenticationSuccessHandler {
+public class SecurityLoginSucessHandler implements AuthenticationSuccessHandler{
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -51,4 +51,5 @@ public class SecurityLoginSucessHandler implements AuthenticationSuccessHandler 
 		
 	}
 
+	
 }

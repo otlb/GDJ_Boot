@@ -18,10 +18,10 @@ import com.winter.app.member.MemberService;
 
 import jakarta.validation.Valid;
 
-//@Configuration
+@Configuration
 //@EnableWebSecurity(debug = true)
-//@EnableWebSecurity
-public class SecurityConfing {
+@EnableWebSecurity
+public class SecurityConfig {
 	@Autowired
 	private SecurityLoginSucessHandler handler;
 	
@@ -113,13 +113,12 @@ public class SecurityConfing {
 							.expiredUrl("/expired")
 							
 			)//sessionManagement 끝
-			.oauth2Login(
-					(oauth2Login)-> 
-						oauth2Login.userInfoEndpoint(
-								(ue)->ue.userService(memberService)
-						)
-			)//oauth2Login 끝부분
-			
+//			.oauth2Login(
+//					(oauth2Login)-> 
+//						oauth2Login.userInfoEndpoint(
+//								(ue)->ue.userService(memberService)
+//						)
+//			)//oauth2Login 끝부분		
 			
 			;	
 	
