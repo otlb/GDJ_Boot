@@ -64,6 +64,7 @@ public class MemberController {
 	@GetMapping("login")
 	public String login(@ModelAttribute MemberVO memberVO,HttpSession session)throws Exception{
 		
+		//로그인한상태 확인하기 
 		Object obj = session.getAttribute("SPRING_SECURITY_CONTEXT");
 		
 		if(obj == null) {
