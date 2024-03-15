@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.winter.app.lamdba.TestInterface;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -13,12 +15,10 @@ public class TestControlloer {
 	
 	@GetMapping("/")
 	public String test() {
-		//trace, debug, info, warn, error
-		log.warn("warn message");
-		log.error("error message");
-		log.info("info message");
-		log.debug("debug message");
-		log.trace("trace message");
+		//람다는 js와 비슷하다 function (){} => ()->{}
+		TestInterface ti = (int a,int b) -> a+b;		
+		System.out.println(ti.t1(0, 0));
+		
 		return "Index";
 	}
 	
